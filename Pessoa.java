@@ -1,5 +1,3 @@
-import java.io.Serializable;
-
 public class Pessoa{
     private String nome;
     private String cpfCnpj;
@@ -10,62 +8,62 @@ public class Pessoa{
 
     // Construtor
     public Pessoa (String nome, String cpfCnpj, String contato) {
-        this.nome = nome;
-        this.cpfCnpj = cpfCnpj;
-        this.contato = contato;
-        this.imoveisFavoritados = new ListaDeImoveis();
-        this.conversas = new ListaDeConversas();
-        this.configAcessibilidade = new ConfigAcessibilidade();
+      this.nome = nome;
+      this.cpfCnpj = cpfCnpj;
+      this.contato = contato;
+      this.imoveisFavoritados = new ListaDeImoveis();
+      this.conversas = new ListaDeConversas();
+      this.configAcessibilidade = new ConfigAcessibilidade();
     }
 
     // Getters
     public String getNome() {
-       return nome;
+      return nome;
     }
 
     public ConfigAcessibilidade getConfigAcessibilidade() {
-       return configAcessibilidade;
+      return configAcessibilidade;
     }
 
     public String getContato() {
-       return contato;
+      return contato;
     }
 
     public ListaDeConversas getConversas() {
-       return conversas;
+      return conversas;
     }
 
     public String getCpfCnpj() {
-       return cpfCnpj;
+      return cpfCnpj;
     }
 
     public ListaDeImoveis getImoveisFavoritados() {
-       return imoveisFavoritados;
+      return imoveisFavoritados;
     }
 
 
     // Setters
     public void setConfigAcessibilidade(ConfigAcessibilidade configAcessibilidade) {
-       this.configAcessibilidade = configAcessibilidade;
+      this.configAcessibilidade = configAcessibilidade;
     }
     
     public void setContato(String contato) {
-       this.contato = contato;
+      this.contato = contato;
     }
 
     public void setConversas(ListaDeConversas conversas) {
-       this.conversas = conversas;
+      this.conversas = conversas;
     }
 
     public void setCpfCnpj(String cpfCnpj) {
-       this.cpfCnpj = cpfCnpj;
+      this.cpfCnpj = cpfCnpj;
     }
 
     public void setImoveisFavoritados(ListaDeImoveis imoveisFavoritados) {
-       this.imoveisFavoritados = imoveisFavoritados;
+      this.imoveisFavoritados = imoveisFavoritados;
     }
     public void setNome(String nome) {
-       this.nome = nome;
+      this.nome = nome;
     }
 }
 
