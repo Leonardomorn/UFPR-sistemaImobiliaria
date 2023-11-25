@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 import java.util.*;
 
 public class ListaDePessoas {
@@ -27,6 +26,15 @@ public class ListaDePessoas {
         }
 
         return nomes;
+    }
+
+    public Pessoa getPessoa(String nome) {
+        Pessoa p = null;
+        for (Pessoa pessoa : pessoas) {
+            if (pessoa.getNome().equals(nome))
+                p = pessoa;
+        }
+        return p;
     }
 
     public void iniciaUsers() {

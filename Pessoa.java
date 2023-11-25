@@ -1,4 +1,6 @@
-public class Pessoa {
+import java.io.Serializable;
+
+public class Pessoa{
     private String nome;
     private String cpfCnpj;
     private String contato;
