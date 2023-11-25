@@ -15,6 +15,7 @@ public class Controladora {
 
     public void Login(String usuario) {
         this.usuarioLogado = listaDePessoas.getPessoa(usuario);
+        System.out.println("Logado como: " + usuario);
     }
 }
 
