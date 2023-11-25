@@ -1,6 +1,6 @@
 public class Controladora {
-    private ListaDeImoveis listaDeImoveis;
-    private ListaDePessoas listaDePessoas;
+    private ListaDeImoveis listaDeImoveis = new ListaDeImoveis();
+    private ListaDePessoas listaDePessoas = new ListaDePessoas();
 
     // Métodos para interação front-back
 }
