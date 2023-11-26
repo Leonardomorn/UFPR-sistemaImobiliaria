@@ -15,5 +15,20 @@ public class ListaDeConversas {
         }
         return null;
     }
+
+    public void adiciona(Pessoa usuario, Pessoa dono) {
+        conversas.add(new Conversa(usuario, dono));
+    }
+
+    public int print_conversas(Pessoa usuario) {
+        int cont = 0;
+        for (Conversa conversa : conversas) {
+            if (conversa.getCliente() == usuario){
+                System.out.println(conversa.getProprietario().getNome());
+                cont++;
+            }
+        }
+        return cont;
+    }
 }
 

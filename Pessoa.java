@@ -4,7 +4,7 @@ public class Pessoa{
     private String contato;
     private ListaDeImoveis imoveisFavoritados;
     private ListaDeImoveis imoveisAnunciados;
-    private ListaDeConversas conversas;
+    // private ListaDeConversas conversas;
     private ConfigAcessibilidade configAcessibilidade;
 
     // Construtor
@@ -14,7 +14,7 @@ public class Pessoa{
       this.contato = contato;
       this.imoveisFavoritados = new ListaDeImoveis();
       this.imoveisAnunciados = new ListaDeImoveis();
-      this.conversas = new ListaDeConversas();
+      // this.conversas = new ListaDeConversas();
       this.configAcessibilidade = new ConfigAcessibilidade(50, false, false, 50);
     }
 
@@ -31,9 +31,9 @@ public class Pessoa{
       return contato;
     }
 
-    public ListaDeConversas getConversas() {
-      return conversas;
-    }
+    // public ListaDeConversas getConversas() {
+    //   return conversas;
+    // }
 
     public String getCpfCnpj() {
       return cpfCnpj;
@@ -56,9 +56,9 @@ public class Pessoa{
       this.contato = contato;
     }
 
-    public void setConversas(ListaDeConversas conversas) {
-      this.conversas = conversas;
-    }
+    // public void setConversas(ListaDeConversas conversas) {
+    //   this.conversas = conversas;
+    // }
 
     public void setCpfCnpj(String cpfCnpj) {
       this.cpfCnpj = cpfCnpj;

@@ -9,13 +9,13 @@ public class ListaDeMensagens {
         this.mensagens = new ArrayList<Mensagem>();
     }
 
-    public void adiciona(String texto, String hora) {
-        mensagens.add(new Mensagem(texto, hora));
+    public void adiciona(String texto, String hora, Pessoa escritor) {
+        mensagens.add(new Mensagem(texto, hora, escritor));
     }
 
     public void print_mensagens() {
         for (Mensagem mensagem : mensagens) {
-            
+            System.out.println(mensagem.getEscritor().getNome() + ": " + mensagem.getTexto() + " - " + mensagem.getHoraEnvio());
         }
     }
 }

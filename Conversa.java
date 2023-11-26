@@ -19,11 +19,15 @@ public class Conversa {
     }
 
     public Pessoa getProprietario() {
-       return proprietario;
+        return proprietario;
     }
 
     public void print_mensagens() {
-      mensagens.print_mensagens();
+        mensagens.print_mensagens();
+    }
+
+    public void adiciona_mensagem(String texto, String hora, Pessoa escritor) {
+        mensagens.adiciona(texto, hora, escritor);
     }
 }
 

@@ -1,11 +1,13 @@
 public class Mensagem {
     private String texto;
     private String horaEnvio;
+    private Pessoa escritor;
 
     // Construtor, getters e setters
-    public Mensagem(String texto, String hora){
+    public Mensagem(String texto, String hora, Pessoa escritor){
         this.texto = texto;
         this.horaEnvio = hora;
+        this.escritor = escritor;
     }
 
     public String getHoraEnvio() {
@@ -14,6 +16,10 @@ public class Mensagem {
 
     public String getTexto() {
        return texto;
+    }
+
+    public Pessoa getEscritor() {
+       return escritor;
     }
 
     public void setHoraEnvio(String horaEnvio) {

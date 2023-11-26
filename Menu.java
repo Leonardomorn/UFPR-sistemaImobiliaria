@@ -111,7 +111,7 @@ public class Menu {
                break;
 
             case 3:
-               
+               ctrl.print_conversas();
                break;
 
             case 4:

@@ -1,9 +1,12 @@
 import java.io.Console;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Controladora {
     private ListaDeImoveis listaDeImoveis = new ListaDeImoveis();
     private ListaDePessoas listaDePessoas = new ListaDePessoas();
+    private ListaDeConversas listaDeConversas = new ListaDeConversas();
     private Pessoa usuarioLogado;
 
     // Métodos para interação front-back
@@ -38,32 +41,53 @@ public class Controladora {
     }
 
     public void entrar_em_contato(Pessoa dono) {
-        Conversa convExiste = usuarioLogado.getConversas().contem(dono);
+        Conversa convExiste = listaDeConversas.contem(dono);
         Console console = System.console();
-        if (convExiste != null) {
-            while (true) {
-                convExiste.print_mensagens();
-                System.out.println("0 - Mandar nova mensagem");
-                System.out.println("1 - Retornar");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+        Date date = new Date();
 
-                int opt = Integer.parseInt(console.readLine());
-
-                if (opt == 0) {
-                    System.out.println("Digite uma nova mensagem: ");
-                    System.out.print("=> ");
-                }
-                else break;
-            }
+        if (convExiste == null) {
+            listaDeConversas.adiciona(usuarioLogado, dono);
+            convExiste = listaDeConversas.contem(dono);
         }
-        else {
+        while (true) {
+            convExiste.print_mensagens();
+            System.out.println("0 - Mandar nova mensagem");
+            System.out.println("1 - Retornar");
+            System.out.print("=> ");
 
+            int opt = Integer.parseInt(console.readLine());
+
+            if (opt == 0) {
+                System.out.print("Digite uma nova mensagem: ");
+                String text = console.readLine();
+                convExiste.adiciona_mensagem(text, formatter.format(date), dono);
+            }
+            else break;
+        }
+    }
+
+    public void print_conversas() {
+        Console console = System.console();
+
+        int cont = listaDeConversas.print_conversas(usuarioLogado);
+        if (cont > 0) {
+        System.out.println("0 - Escolher conversa");
+            System.out.println("1 - Retornar");
+            System.out.print("=> ");
+            int opt = Integer.parseInt(console.readLine());
+
+            if (opt == 0) {
+                System.out.print("Digite o nome da Pessoa: ");
+                String dono = console.readLine();
+                entrar_em_contato(listaDePessoas.getPessoa(dono));
+            }
         }
     }
 
     public void seleciona_imovel () {
         Console console = System.console();
-        System.out.println("Digite o ID do imóvel: ");
-        System.out.print("=> ");
+        System.out.print("Digite o ID do imóvel: ");
         Imovel selec = listaDeImoveis.getImovel(Integer.parseInt(console.readLine()));
         
         System.out.println("\t-> " + selec.getEndereco() + " - " + selec.getDescricao() + " - R$" + selec.getPreco());
