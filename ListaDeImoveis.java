@@ -19,6 +19,10 @@ public class ListaDeImoveis {
         }
     }
 
+    public void adiciona(Imovel i) {
+        this.imoveis.add(i);
+    }
+
     public void pesquisa_endereco (String bairro) {
         for (Imovel imovel : imoveis) {
             if (imovel.getBairro().equals(bairro)) {
@@ -33,6 +37,13 @@ public class ListaDeImoveis {
 
     public boolean contem (Imovel i) {
         return imoveis.contains(i);
+    }
+
+    public void print_lista(String titulo) {
+        System.out.println(titulo);
+        for (Imovel imovel : imoveis) {
+            System.out.println("\t-> " + imoveis.indexOf(imovel) + " - "  + imovel.getEndereco() + " - " + imovel.getDescricao() + " - R$" + imovel.getPreco());
+        }
     }
 }
 

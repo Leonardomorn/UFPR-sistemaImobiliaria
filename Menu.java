@@ -7,13 +7,6 @@ public class Menu {
    private static void gerencia_input(Scanner scanner) {
       boolean running = true;
       while (running) {
-         System.out.println("------ Opções ------");
-         System.out.println("0 - Anunciar imóvel");
-         System.out.println("1 - Pesquisar endereço");
-         System.out.println("2 - Ver favoritos");
-         System.out.println("3 - Ver conversas");
-         System.out.println("4 - Sair");
-
          System.out.print("=> ");
 
          int opt = Integer.parseInt(scanner.nextLine());
@@ -50,16 +43,19 @@ public class Menu {
 
                System.out.println("0 - Escolher imóvel");
                System.out.println("1 - Filtrar imóveis");
+               System.out.println("2 - Retornar");
                opt = Integer.parseInt(scanner.nextLine());
-               
-               if (opt == 1)
+
+               if (opt == 2)
+                  break;
+               else if (opt == 1)
                   ctrl.filtrar_imoveis();
                ctrl.seleciona_imovel();
                
                break;
 
             case 2:
-               
+               ctrl.mostra_favoritos();
                break;
 
             case 3:
@@ -68,6 +64,16 @@ public class Menu {
 
             case 4:
                running = false;
+               break;
+
+            case 9:
+               System.out.println("------ Opções ------");
+               System.out.println("0 - Anunciar imóvel");
+               System.out.println("1 - Pesquisar endereço");
+               System.out.println("2 - Ver favoritos");
+               System.out.println("3 - Ver conversas");
+               System.out.println("4 - Sair");
+               System.out.println("9 - Mostrar esse menu");
                break;
 
             default:
@@ -95,7 +101,8 @@ public class Menu {
       } while (!c);
 
       ctrl.login(username);
-      gerencia_input(scanner);      
+      System.out.println("Digite 9 para ver as opções");
+      gerencia_input(scanner);
       scanner.close();
    }
 }

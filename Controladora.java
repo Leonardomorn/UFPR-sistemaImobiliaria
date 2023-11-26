@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.util.List;
 import java.util.Scanner;
 
@@ -25,28 +26,38 @@ public class Controladora {
         listaDeImoveis.pesquisa_endereco (bairro);
     }
 
-    public void seleciona_imovel () {
-        Scanner s = new Scanner(System.in);
-        System.out.println("Digite o ID do imóvel: ");
-        Imovel selec = listaDeImoveis.getImovel(Integer.parseInt(s.nextLine()));
-        
-        if (usuarioLogado.getImoveisFavoritados().contem(selec))
-            System.out.println("0 - Favoritar imóvel");
-        else
-            System.out.println("0 - Desfavoritar imóvel");
-        System.out.println("1 - Entrar em contato");
-        int opt = Integer.parseInt(s.nextLine());
+    public void favoritar(Imovel i) {
+        usuarioLogado.getImoveisFavoritados().adiciona(i);
+        System.out.println("-> Imóvel adicionado aos favoritos!");
+    }
 
-        // if (opt == 0)
-        //     favoritar (selec);
+    public void seleciona_imovel () {
+        // Scanner s = new Scanner(System.in);
+        Console console = System.console();
+        System.out.println("Digite o ID do imóvel: ");
+        Imovel selec = listaDeImoveis.getImovel(Integer.parseInt(console.readLine()));
+        
+        System.out.println("\t-> " + selec.getEndereco() + " - " + selec.getDescricao() + " - R$" + selec.getPreco());
+
+        if (usuarioLogado.getImoveisFavoritados().contem(selec))
+            System.out.println("0 - Desfavoritar imóvel");
+        else
+            System.out.println("0 - Favoritar imóvel");
+        System.out.println("1 - Entrar em contato");
+        int opt = Integer.parseInt(console.readLine());
+
+        if (opt == 0)
+            favoritar (selec);
         // else
         //     entrar_em_contato(selec.getDono());
-
-        s.close();
     }
 
     public void filtrar_imoveis () {
 
+    }
+
+    public void mostra_favoritos() {
+        usuarioLogado.getImoveisFavoritados().print_lista("Imóveis favoritados");
     }
 }
 
