@@ -3,13 +3,15 @@ public class Imovel {
     private String descricao;
     private String endereco;
     private String bairro;
+    private Pessoa dono;
 
     // Construtor, getters e setters
-    public Imovel(float preco, String descricao, String endereco, String bairro) {
+    public Imovel(float preco, String descricao, String endereco, String bairro, Pessoa dono) {
         this.preco = preco;
         this.descricao = descricao;
         this.endereco = endereco;
         this.bairro = bairro;
+        this.dono = dono;
     }
 
     public String getDescricao() {
@@ -26,6 +28,10 @@ public class Imovel {
     
     public String getBairro() {
        return bairro;
+    }
+
+    public Pessoa getDono() {
+       return dono;
     }
 
     public void setDescricao(String descricao) {

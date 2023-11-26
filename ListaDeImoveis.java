@@ -21,8 +21,11 @@ public class ListaDeImoveis {
     }
 
     // Métodos
-    public void adiciona(float preco, String endereco, String descricao, String bairro) {
-        this.imoveis.add(new Imovel(preco, descricao, endereco, bairro));
+    public void adiciona(float preco, String endereco, String descricao, String bairro, Pessoa dono) {
+        Imovel im = new Imovel(preco, descricao, endereco, bairro, dono);
+        this.imoveis.add(im);
+        dono.getImoveisAnunciados().adiciona(im);
+
         System.out.println("-> Imóvel cadastrado com sucesso!");
         System.out.println("Seus imóveis: ");
         for (Imovel i: imoveis) {
@@ -41,10 +44,17 @@ public class ListaDeImoveis {
         this.tam--;
     }
 
-    public void print_lista(String titulo) {
+    public int getIndex(Imovel i) {
+        for (Imovel imovel : imoveis) {
+            if (imovel == i) return imoveis.indexOf(imovel);
+        }
+        return -1;
+    }
+
+    public void print_lista(String titulo, ListaDeImoveis listaInd) {
         System.out.println(titulo);
         for (Imovel imovel : imoveis) {
-            System.out.println("\t-> " + imoveis.indexOf(imovel) + " - "  + imovel.getEndereco() + " - " + imovel.getDescricao() + " - R$" + imovel.getPreco());
+            System.out.println("\t-> " + listaInd.getIndex(imovel) + " - "  + imovel.getEndereco() + " - " + imovel.getDescricao() + " - R$" + imovel.getPreco());
         }
     }
 
@@ -58,6 +68,18 @@ public class ListaDeImoveis {
 
     public boolean contem (Imovel i) {
         return imoveis.contains(i);
+    }
+
+    public int filtrar (float preco) {
+        int count = 0;
+        for (Imovel imovel : imoveis) {
+            if (imovel.getPreco() <= preco) {
+                count++;
+                System.out.println("\t-> " + imoveis.indexOf(imovel) + " - "  + imovel.getEndereco() + " - " + imovel.getDescricao() + " - R$" + imovel.getPreco());
+            }
+        }
+
+        return count;
     }
 }
 

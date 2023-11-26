@@ -3,6 +3,7 @@ public class Pessoa{
     private String cpfCnpj;
     private String contato;
     private ListaDeImoveis imoveisFavoritados;
+    private ListaDeImoveis imoveisAnunciados;
     private ListaDeConversas conversas;
     private ConfigAcessibilidade configAcessibilidade;
 
@@ -12,8 +13,9 @@ public class Pessoa{
       this.cpfCnpj = cpfCnpj;
       this.contato = contato;
       this.imoveisFavoritados = new ListaDeImoveis();
+      this.imoveisAnunciados = new ListaDeImoveis();
       this.conversas = new ListaDeConversas();
-      this.configAcessibilidade = new ConfigAcessibilidade();
+      this.configAcessibilidade = new ConfigAcessibilidade(50, false, false, 50);
     }
 
     // Getters
@@ -41,6 +43,9 @@ public class Pessoa{
       return imoveisFavoritados;
     }
 
+    public ListaDeImoveis getImoveisAnunciados() {
+      return imoveisAnunciados;
+    }
 
     // Setters
     public void setConfigAcessibilidade(ConfigAcessibilidade configAcessibilidade) {
