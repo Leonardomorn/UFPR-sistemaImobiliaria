@@ -1,6 +1,5 @@
 import java.io.Console;
 import java.util.List;
-import java.util.Scanner;
 
 public class Controladora {
     private ListaDeImoveis listaDeImoveis = new ListaDeImoveis();
@@ -27,8 +26,15 @@ public class Controladora {
     }
 
     public void favoritar(Imovel i) {
-        usuarioLogado.getImoveisFavoritados().adiciona(i);
-        System.out.println("-> Imóvel adicionado aos favoritos!");
+        boolean contem = usuarioLogado.getImoveisFavoritados().contem(i);
+        if (!contem) {
+            usuarioLogado.getImoveisFavoritados().adiciona(i);
+            System.out.println("-> Imóvel adicionado aos favoritos!");
+        }
+        else{
+            usuarioLogado.getImoveisFavoritados().remove(i);
+            System.out.println("-> Imóvel removido dos favoritos!");
+        }
     }
 
     public void seleciona_imovel () {
@@ -44,9 +50,11 @@ public class Controladora {
         else
             System.out.println("0 - Favoritar imóvel");
         System.out.println("1 - Entrar em contato");
+        System.out.println("2 - Retornar");
         int opt = Integer.parseInt(console.readLine());
 
-        if (opt == 0)
+        if (opt == 2) return;
+        else if (opt == 0)
             favoritar (selec);
         // else
         //     entrar_em_contato(selec.getDono());
@@ -57,7 +65,16 @@ public class Controladora {
     }
 
     public void mostra_favoritos() {
-        usuarioLogado.getImoveisFavoritados().print_lista("Imóveis favoritados");
+        ListaDeImoveis l = usuarioLogado.getImoveisFavoritados();
+        if (l.getTam() > 0){
+            l.print_lista("Imóveis favoritados");
+            System.out.println("0 - Escolher imóvel");
+            System.out.println("1 - Retornar");
+            Console console = System.console();
+            int opt = Integer.parseInt(console.readLine());
+            if (opt == 0) seleciona_imovel();
+            else return;
+        }
     }
 }
 

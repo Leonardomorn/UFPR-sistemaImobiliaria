@@ -3,10 +3,21 @@ import java.util.List;
 
 public class ListaDeImoveis {
     private List<Imovel> imoveis;
+    private int tam;
 
     // Construtor
     public ListaDeImoveis() {
         this.imoveis = new ArrayList<Imovel>();
+        this.tam = 0;
+    }
+
+    // Getter
+    public Imovel getImovel(int index) {
+        return imoveis.get(index);
+    }
+
+    public int getTam() {
+       return tam;
     }
 
     // Métodos
@@ -17,26 +28,17 @@ public class ListaDeImoveis {
         for (Imovel i: imoveis) {
             System.out.println("\t" + i.getEndereco() + " - " + i.getBairro() + " - " + "R$" + i.getPreco());
         }
+        this.tam++;
     }
 
     public void adiciona(Imovel i) {
         this.imoveis.add(i);
+        this.tam++;
     }
 
-    public void pesquisa_endereco (String bairro) {
-        for (Imovel imovel : imoveis) {
-            if (imovel.getBairro().equals(bairro)) {
-                System.out.println("-> " + imoveis.indexOf(imovel) + " - "  + imovel.getEndereco() + " - " + imovel.getDescricao() + " - R$" + imovel.getPreco());
-            }
-        }
-    }
-
-    public Imovel getImovel(int index) {
-        return imoveis.get(index);
-    }
-
-    public boolean contem (Imovel i) {
-        return imoveis.contains(i);
+    public void remove(Imovel i) {
+        this.imoveis.remove(i);
+        this.tam--;
     }
 
     public void print_lista(String titulo) {
@@ -44,6 +46,18 @@ public class ListaDeImoveis {
         for (Imovel imovel : imoveis) {
             System.out.println("\t-> " + imoveis.indexOf(imovel) + " - "  + imovel.getEndereco() + " - " + imovel.getDescricao() + " - R$" + imovel.getPreco());
         }
+    }
+
+    public void pesquisa_endereco (String bairro) {
+        for (Imovel imovel : imoveis) {
+            if (imovel.getBairro().equals(bairro)) {
+                System.out.println("\t-> " + imoveis.indexOf(imovel) + " - "  + imovel.getEndereco() + " - " + imovel.getDescricao() + " - R$" + imovel.getPreco());
+            }
+        }
+    }
+
+    public boolean contem (Imovel i) {
+        return imoveis.contains(i);
     }
 }
 
