@@ -4,14 +4,20 @@ import java.util.Date;
 import java.util.List;
 
 public class Controladora {
-    private ListaDeImoveis listaDeImoveis = new ListaDeImoveis();
-    private ListaDePessoas listaDePessoas = new ListaDePessoas();
-    private ListaDeConversas listaDeConversas = new ListaDeConversas();
+    private ListaDeImoveis listaDeImoveis;
+    private ListaDePessoas listaDePessoas;
+    private ListaDeConversas listaDeConversas;
     private Pessoa usuarioLogado;
+
+    public Controladora() {
+        this.listaDeImoveis = new ListaDeImoveis();
+        this.listaDeConversas = new ListaDeConversas();
+        this.listaDePessoas = new ListaDePessoas();
+        this.listaDePessoas.iniciaUsers();
+    }
 
     // Métodos para interação front-back
     public List<String> get_usuarios() {
-        this.listaDePessoas.iniciaUsers();
         return this.listaDePessoas.getNomes();
     }
 
@@ -61,7 +67,7 @@ public class Controladora {
             if (opt == 0) {
                 System.out.print("Digite uma nova mensagem: ");
                 String text = console.readLine();
-                convExiste.adiciona_mensagem(text, formatter.format(date), dono);
+                convExiste.adiciona_mensagem(text, formatter.format(date), usuarioLogado);
             }
             else break;
         }

@@ -11,7 +11,7 @@ public class ListaDeConversas {
 
     public Conversa contem(Pessoa dono) {
         for (Conversa conversa : conversas) {
-            if (conversa.getProprietario() == dono)  return conversa;
+            if (conversa.getProprietario() == dono || conversa.getCliente() == dono)  return conversa;
         }
         return null;
     }
@@ -25,6 +25,10 @@ public class ListaDeConversas {
         for (Conversa conversa : conversas) {
             if (conversa.getCliente() == usuario){
                 System.out.println(conversa.getProprietario().getNome());
+                cont++;
+            }
+            else if (conversa.getProprietario() == usuario){
+                System.out.println(conversa.getCliente().getNome());
                 cont++;
             }
         }

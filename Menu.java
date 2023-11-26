@@ -4,6 +4,27 @@ import java.util.Scanner;
 public class Menu {
    private static Controladora ctrl;
 
+   private static void login(Scanner scanner) {
+      boolean c;
+      String username;
+      
+      System.out.println("Bem-Vindo! Quem é você?");
+      List<String> usuarios = ctrl.get_usuarios();
+      for (String usuario : usuarios) {
+         System.out.println("- " + usuario);
+      }
+
+      // Enquanto não digitar um nome de usuário válido
+      do {
+         System.out.print("=> ");
+         username = scanner.nextLine();
+         c = usuarios.contains(username);
+         if (!c) System.out.println("Usuário inválido");
+      } while (!c);
+
+      ctrl.login(username);
+   }
+
    private static void menu_acessibilidade(Scanner scanner) {
       boolean running = true;
       float contraste = 50, tamTexto = 50;
@@ -122,6 +143,10 @@ public class Menu {
                running = false;
                break;
 
+            case 6:
+               login(scanner);
+               break;
+
             case 9:
                System.out.println("------ Opções ------");
                System.out.println("0 - Anunciar imóvel");
@@ -130,6 +155,7 @@ public class Menu {
                System.out.println("3 - Ver conversas");
                System.out.println("4 - Acessibilidade");
                System.out.println("5 - Sair");
+               System.out.println("6 - Deslogar");
                System.out.println("9 - Mostrar esse menu");
                break;
 
@@ -140,26 +166,9 @@ public class Menu {
    }
    public static void main(String[] args) {
       ctrl = new Controladora();
-      
-      System.out.println("Bem-Vindo! Quem é você?");
-      List<String> usuarios = ctrl.get_usuarios();
-      for (String usuario : usuarios) {
-         System.out.println("- " + usuario);
-      }
-
-      boolean c;
-      String username;
       Scanner scanner = new Scanner(System.in);
 
-      // Enquanto não digitar um nome de usuário válido
-      do {
-         System.out.print("=> ");
-         username = scanner.nextLine();
-         c = usuarios.contains(username);
-         if (!c) System.out.println("Usuário inválido");
-      } while (!c);
-
-      ctrl.login(username);
+      login (scanner);
       System.out.println("Digite 9 para ver as opções");
       gerencia_input(scanner);
       scanner.close();

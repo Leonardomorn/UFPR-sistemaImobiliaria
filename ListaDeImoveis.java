@@ -29,7 +29,8 @@ public class ListaDeImoveis {
         System.out.println("-> Imóvel cadastrado com sucesso!");
         System.out.println("Seus imóveis: ");
         for (Imovel i: imoveis) {
-            System.out.println("\t" + i.getEndereco() + " - " + i.getBairro() + " - " + "R$" + i.getPreco());
+            if (i.getDono() == dono)
+                System.out.println("\t" + i.getEndereco() + " - " + i.getBairro() + " - " + "R$" + i.getPreco());
         }
         this.tam++;
     }
