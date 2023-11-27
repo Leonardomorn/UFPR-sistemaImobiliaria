@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ListaDeImoveis {
     private List<Imovel> imoveis;
@@ -18,6 +24,10 @@ public class ListaDeImoveis {
 
     public int getTam() {
        return tam;
+    }
+
+    public List<Imovel> getImoveis() {
+        return imoveis;
     }
 
     // Métodos
@@ -82,5 +92,54 @@ public class ListaDeImoveis {
 
         return count;
     }
-}
 
+    // Persistence
+
+    public void assertPersistence(String arquivo) {
+        File file = new File(arquivo);
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Erro ao criar arquivo " + arquivo);
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private List<Imovel> getListFromFile(String arquivo) {
+        List<Imovel> imoveis = new ArrayList<>();
+    
+        try (BufferedReader reader = new BufferedReader(new FileReader(arquivo))) {
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                String[] dados = linha.split(";");
+                if (dados.length >= 5) {
+                    Pessoa dono = new Pessoa(dados[4], "", ""); // Tem que colocar o dono do arquivo de algum jeito **TODO**
+                    Imovel imovel = new Imovel(Float.parseFloat(dados[0]), dados[1], dados[2], dados[3], dono);
+                    imoveis.add(imovel);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return imoveis;
+    }
+
+    public void writeImoveisToFile(List<Imovel> imoveis, String arquivo) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo))) {
+            for (Imovel imovel : imoveis) {
+                writer.write(imovel.getPreco() + ";" + imovel.getDescricao() + ";" + imovel.getEndereco() + ";" + imovel.getBairro() + ";" + imovel.getDono().getNome());
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void imprimirImoveis(List<Imovel> imoveis) {
+        for (Imovel imovel : imoveis) {
+            System.out.println("Endereço: " + imovel.getEndereco() + ", Bairro: " + imovel.getBairro() + ", Preço: R$" + imovel.getPreco() + ", Descrição: " + imovel.getDescricao() + ", Dono: " + imovel.getDono().getNome());
+        }
+    }
+}
