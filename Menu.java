@@ -172,5 +172,7 @@ public class Menu {
       System.out.println("Digite 9 para ver as opções");
       gerencia_input(scanner);
       scanner.close();
+      ctrl.salvarPessoas("pessoas.txt");
+      ctrl.salvarConversas("conversas.txt");
    }
 }

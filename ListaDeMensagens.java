@@ -9,6 +9,10 @@ public class ListaDeMensagens {
         this.mensagens = new ArrayList<Mensagem>();
     }
 
+    public List<Mensagem> getMensagens() {
+        return mensagens;
+    }
+
     public void adiciona(String texto, String hora, Pessoa escritor) {
         mensagens.add(new Mensagem(texto, hora, escritor));
     }

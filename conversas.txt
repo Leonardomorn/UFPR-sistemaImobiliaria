@@ -1,0 +1,9 @@
+--pessoas--
+gustavo;123;123456789;gustavo;123;123456789
+--msg--Oi, tudo bem?;27/11/2023 21:05:31;gustavo
+---
+--pessoas--
+tulio;789;123456789;dolzan;789;123456789
+--msg--Dolzan, me ve essa dolzanic ai;27/11/2023 21:21:25;tulio
+--msg--Falae Tuliao;27/11/2023 21:30:38;dolzan
+---

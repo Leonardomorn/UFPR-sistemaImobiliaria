@@ -13,7 +13,13 @@ public class Controladora {
         this.listaDeImoveis = new ListaDeImoveis();
         this.listaDeConversas = new ListaDeConversas();
         this.listaDePessoas = new ListaDePessoas();
-        this.listaDePessoas.iniciaUsers();
+
+        // Persistence
+        this.listaDePessoas.assertPersistence("pessoas.txt");
+        this.listaDePessoas.setListFromFile("pessoas.txt");
+        this.listaDeImoveis = this.listaDePessoas.unificarListas();
+        this.listaDeConversas.assertPersistence("conversas.txt");
+        this.listaDeConversas.setListFromFile(listaDePessoas, "conversas.txt");
     }
 
     // Métodos para interação front-back
@@ -154,5 +160,13 @@ public class Controladora {
         usuarioLogado.getConfigAcessibilidade().setFonteNegrito(negrito);
         usuarioLogado.getConfigAcessibilidade().setModoDaltonico(daltonico);
         usuarioLogado.getConfigAcessibilidade().setTamanhoTexto(tamTexto);
+    }
+
+    public void salvarPessoas(String arquivo) {
+        this.listaDePessoas.writePessoasToFile(arquivo);
+    }
+
+    public void salvarConversas(String arquivo) {
+        this.listaDeConversas.writeConversasToFile(arquivo);
     }
 }

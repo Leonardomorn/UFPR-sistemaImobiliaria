@@ -42,20 +42,6 @@ public class ListaDePessoas {
         return p;
     }
 
-    public void assertPersistence(String arquivo) {
-        // Cria arquivo se nao existe
-        try {
-            File file = new File(arquivo);
-
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void iniciaUsers() {
         this.adicionar(new Pessoa("gustavo", "123", "123456789"));
         this.adicionar(new Pessoa("leonardo", "456", "123456789"));
@@ -67,9 +53,22 @@ public class ListaDePessoas {
         return this.pessoas;
     }
 
-    private List<Pessoa> getListFromFile(String arquivo) {
-        List<Pessoa> pessoas = new ArrayList<>();
-    
+    public void assertPersistence(String arquivo) {
+        // Cria arquivo se nao existe
+        try {
+            File file = new File(arquivo);
+
+            if (!file.exists()) {
+                file.createNewFile();
+                iniciaUsers();
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setListFromFile(String arquivo) {
         try (BufferedReader reader = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             Pessoa pessoaAtual = null;
@@ -101,14 +100,9 @@ public class ListaDePessoas {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return pessoas;
     }
 
-    public void setListFromFile(String arquivo) {
-        this.pessoas = getListFromFile(arquivo);
-    }
-
-    public void writePessoasToFile(List<Pessoa> pessoas, String arquivo) {
+    public void writePessoasToFile(String arquivo) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(arquivo))) {
             for (Pessoa pessoa : pessoas) {
                 writer.write(pessoa.getNome() + ";" + pessoa.getCpfCnpj() + ";" + pessoa.getContato());
@@ -136,6 +130,16 @@ public class ListaDePessoas {
                 System.out.println("\t-> Imovel: " + imovel.getEndereco() + " - " + imovel.getBairro() + " - R$" + imovel.getPreco() + " - " + imovel.getDescricao());
             }
         }
+    }
+
+    public ListaDeImoveis unificarListas() {
+        ListaDeImoveis listaDeImoveis = new ListaDeImoveis();
+        for (Pessoa pessoa : this.pessoas) {
+            for (Imovel imovel : pessoa.getImoveisAnunciados().getImoveis()) {
+                listaDeImoveis.adiciona(imovel);
+            }
+        }
+        return listaDeImoveis;
     }
 
 }
