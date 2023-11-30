@@ -79,6 +79,15 @@ public class Menu {
    private static void gerencia_input(Scanner scanner) {
       boolean running = true;
       while (running) {
+         System.out.println("------ Opções ------");
+         System.out.println("0 - Anunciar imóvel");
+         System.out.println("1 - Pesquisar endereço");
+         System.out.println("2 - Ver favoritos");
+         System.out.println("3 - Ver conversas");
+         System.out.println("4 - Acessibilidade");
+         System.out.println("5 - Sair");
+         System.out.println("6 - Deslogar");
+
          System.out.print("=> ");
 
          int opt = Integer.parseInt(scanner.nextLine());
@@ -145,18 +154,6 @@ public class Menu {
 
             case 6:
                login(scanner);
-               break;
-
-            case 9:
-               System.out.println("------ Opções ------");
-               System.out.println("0 - Anunciar imóvel");
-               System.out.println("1 - Pesquisar endereço");
-               System.out.println("2 - Ver favoritos");
-               System.out.println("3 - Ver conversas");
-               System.out.println("4 - Acessibilidade");
-               System.out.println("5 - Sair");
-               System.out.println("6 - Deslogar");
-               System.out.println("9 - Mostrar esse menu");
                break;
 
             default:

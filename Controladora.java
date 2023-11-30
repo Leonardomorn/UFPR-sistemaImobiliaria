@@ -53,6 +53,11 @@ public class Controladora {
     }
 
     public void entrar_em_contato(Pessoa dono) {
+        if (dono == null) {
+            System.out.println("\u001B[31m" + "Usuário inválido" + "\u001B[0m");
+            return;
+        }
+
         Conversa convExiste = listaDeConversas.contem(dono);
         Console console = System.console();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
