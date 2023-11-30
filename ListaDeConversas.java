@@ -97,10 +97,10 @@ public class ListaDeConversas {
         }
 
         // Print the list
-        for (Conversa conversa : conversas) {
-            System.out.println(conversa.getCliente().getNome() + " - " + conversa.getProprietario().getNome());
-            conversa.print_mensagens();
-        }
+        // for (Conversa conversa : conversas) {
+        //     System.out.println(conversa.getCliente().getNome() + " - " + conversa.getProprietario().getNome());
+        //     conversa.print_mensagens();
+        // }
 
     }
 
